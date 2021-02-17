@@ -35,4 +35,39 @@ class UserController extends Controller
         return redirect('user-profile');
     }
 
+    public function list(Request $request)
+    {
+        $list = User::paginate(10);
+        return view('user.list', ['list'=>$list]);
+    }
+
+    public function show(User $user)
+    {
+        \Log::debug($user);
+        return view('user.show', ['user'=>$user]);
+    }
+
+    public function save(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'type' => 'required|string|in:admin,manager,staff',
+            'email' => ['email', function ($attribute, $value, $fail) {
+                if (User::where('email', $value)->get()) {
+                    $fail('The email aleady exists');
+                }
+            },]
+        ]);
+
+        $user = User::findOrFail($request->id);
+        $user->name = $request->name;
+        if (!empty($request->password)) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->type = $request->type;
+        $user->save();
+
+        return redirect('/user-show/' . $user->id);
+    }
+
 }

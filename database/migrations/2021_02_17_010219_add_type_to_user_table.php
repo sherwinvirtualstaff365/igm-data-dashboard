@@ -14,7 +14,7 @@ class AddTypeToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->string('type')->default('staff')->after('password')->index();
         });
     }
 
@@ -26,7 +26,7 @@ class AddTypeToUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('type');
         });
     }
 }

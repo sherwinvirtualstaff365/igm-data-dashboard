@@ -25,6 +25,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/user-profile', [App\Http\Controllers\UserController::class, 'profile'])->name('user-profile');
     Route::post('/user-profile', [App\Http\Controllers\UserController::class, 'profileUpdate']);
+
+
+    Route::middleware(['admin'])->group(function(){
+        Route::get('/user-list', [App\Http\Controllers\UserController::class, 'list'])->name('user-list');
+        Route::get('/user-show/{user?}', [App\Http\Controllers\UserController::class, 'show'])->name('user-show');
+        Route::post('/user-save', [App\Http\Controllers\UserController::class, 'save']);
+        Route::delete('/user-delete', [App\Http\Controllers\UserController::class, 'delete']);
+    });
+
 });
 
 

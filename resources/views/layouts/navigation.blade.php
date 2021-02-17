@@ -15,6 +15,12 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (Auth()->user()->isAdmin())
+                    <x-nav-link :href="route('user-list')" :active="request()->routeIs('user-list')">
+                        {{ __('Users') }}
+                    </x-nav-link>
+                    @endif
+
                 </div>
 
             </div>
@@ -70,6 +76,12 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if (Auth()->user()->isAdmin())
+            <x-responsive-nav-link :href="route('user-list')" :active="request()->routeIs('user-list')">
+                {{ __('Users') }}
+            </x-responsive-nav-link>
+            @endif
+
 
 
         </div>
@@ -87,10 +99,6 @@
                     <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
-            </div>
-
-            <div class="mt-3 space-y-1">
-
             </div>
 
             <div class="mt-3 space-y-1">
