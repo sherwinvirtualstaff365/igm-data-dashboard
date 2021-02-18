@@ -10,7 +10,7 @@ use App\Models\User;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show user profile
      *
      * @return \Illuminate\Http\Response
      */

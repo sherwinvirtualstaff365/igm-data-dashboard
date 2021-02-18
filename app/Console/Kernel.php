@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\SendDataEntryNotification;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,7 +25,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        foreach (['11:00','13:00','15:30','17:30'] as $qtr) {
+            $schedule->job(new SendDataEntryNotification(date('Y-m-d'), $qtr))
+                 ->dailyAt($qtr)
+                 ->timezone('Australia/Melbourne');
+        }
+
     }
 
     /**

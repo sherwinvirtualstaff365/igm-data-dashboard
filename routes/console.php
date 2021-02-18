@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use \App\Jobs\SendDataEntryNotification;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+Artisan::command('test', function () {
+    dispatch_now(new SendDataEntryNotification(date('Y-m-d'), '15:30'));
+});

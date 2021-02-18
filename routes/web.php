@@ -26,6 +26,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user-profile', [App\Http\Controllers\UserController::class, 'profile'])->name('user-profile');
     Route::post('/user-profile', [App\Http\Controllers\UserController::class, 'profileUpdate']);
 
+    Route::get('/data-entry', [App\Http\Controllers\DataController::class, 'show'])->name('data-entry-form');
+    Route::get('/data-entry/{date}/{quarter}', [App\Http\Controllers\DataController::class, 'getEntry']);
+    Route::post('/data-entry/{date}/{quarter}', [App\Http\Controllers\DataController::class, 'saveEntry']);
+
+
 
     Route::middleware(['admin'])->group(function(){
         Route::get('/user-list', [App\Http\Controllers\UserController::class, 'list'])->name('user-list');
