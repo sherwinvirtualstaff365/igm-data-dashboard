@@ -37,8 +37,8 @@
 
                 <div class="p-6 bg-white">
                     <div class="">
-                        <x-label for="calls_dialled" :value="__('Calls Dialled')" />
-                        <x-input id="calls_dialled" class="block mt-1 text-center" type="number" name="calls_dialled" value=""/>
+                        <x-label for="calls_dialed" :value="__('Calls Dialed')" />
+                        <x-input id="calls_dialed" class="block mt-1 text-center" type="number" name="calls_dialed" value=""/>
                     </div>
                     <div class="mt-2">
                         <x-label for="conversations" :value="__('Conversations')" />
@@ -93,7 +93,7 @@
                 .then(function(res){
                     console.log(res.data);
                     // reset
-                    $('input[name=calls_dialled]').val(0);
+                    $('input[name=calls_dialed]').val(0);
                     $('input[name=conversations]').val(0);
                     $('input[name=rating_questions_asked]').val(0);
                     $('input[name=dollars_taken]').val(0);
@@ -103,7 +103,7 @@
 
                     if (res.data.id!=undefined) {
                         metaData = JSON.parse(res.data.meta_data)
-                        $('input[name=calls_dialled]').val(metaData.calls_dialled!=undefined ? metaData.calls_dialled : 0);
+                        $('input[name=calls_dialed]').val(metaData.calls_dialed!=undefined ? metaData.calls_dialed : 0);
                         $('input[name=conversations]').val(metaData.conversations!=undefined ? metaData.conversations : 0);
                         $('input[name=rating_questions_asked]').val(metaData.rating_questions_asked!=undefined ? metaData.rating_questions_asked : 0);
                         $('input[name=dollars_taken]').val(metaData.dollars_taken!=undefined ? metaData.dollars_taken : 0);
@@ -119,7 +119,7 @@
 
         function save(){
             var data = {
-                calls_dialled: $('input[name=calls_dialled]').val(),
+                calls_dialed: $('input[name=calls_dialed]').val(),
                 conversations: $('input[name=conversations]').val(),
                 rating_questions_asked: $('input[name=rating_questions_asked]').val(),
                 dollars_taken: $('input[name=dollars_taken]').val(),

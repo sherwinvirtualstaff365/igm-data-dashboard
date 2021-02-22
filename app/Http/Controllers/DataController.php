@@ -26,9 +26,8 @@ class DataController extends Controller
      */
     public function getEntry(Request $request)
     {
-        $entryDate = Carbon::createFromFormat('Y-m-d H:m',  $request->date . ' ' . $request->quarter)->toDateTimeString();
         $data = DataEntry::where('user_id', Auth()->user()->id)
-                            ->where('entry_date', $entryDate)
+                            ->where('entry_date', $request->date . ' ' . $request->quarter . ':00')
                             ->first();
         return response()->json($data);
     }
@@ -41,22 +40,21 @@ class DataController extends Controller
      */
     public function saveEntry(Request $request)
     {
-        $entryDate = Carbon::createFromFormat('Y-m-d H:m',  $request->date . ' ' . $request->quarter)->toDateTimeString();
+        $entryDate = Carbon::createFromFormat('Y-m-d H:m:s',  $request->date . ' ' . $request->quarter . ':00')->toDateTimeString();
 
         // check if entry already exist (user_id, entry_date, meta_data->quarter)
         $entry = DataEntry::where('user_id', Auth()->user()->id)
                             ->where('entry_date', $entryDate)
                             ->first();
-
         if (!$entry) {
             $entry = new DataEntry();
-            $entry->entry_date = $entryDate;
+            $entry->entry_date = $request->date . ' ' . $request->quarter . ':00';
             $entry->user_id = Auth()->user()->id;
         }
 
         // update fields
         $metaData = [
-            'calls_dialled' => $request->calls_dialled,
+            'calls_dialed' => $request->calls_dialed,
             'conversations' => $request->conversations,
             'rating_questions_asked' => $request->rating_questions_asked,
             'dollars_taken' => $request->dollars_taken,
@@ -70,5 +68,15 @@ class DataController extends Controller
         $entry->save();
 
         return response()->json();
+    }
+
+    /**
+     * returns json data of data entry summary in current day, week & month
+     */
+    public function summary(Request $request)
+    {
+        $date = $request->date;
+        $weekDateFrom = ;
+        $weekDateTo = ;
     }
 }
