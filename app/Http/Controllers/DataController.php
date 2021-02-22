@@ -75,8 +75,8 @@ class DataController extends Controller
      */
     public function summary(Request $request)
     {
-        $date = $request->date;
-        $weekDateFrom = ;
-        $weekDateTo = ;
+        // $date = $request->date;
+        // $weekDateFrom = ;
+        // $weekDateTo = ;
     }
 }
