@@ -38,7 +38,7 @@ class SendDataEntryNotification implements ShouldQueue
      */
     public function handle()
     {
-        $users = \App\Models\User::all();       // TODO: this should filter users who should receive the notification
+        $users = \App\Models\User::where('type', 'staff')->get();
         foreach ($users as $u) {
             Mail::to($u->email)->queue(new DataEntryNotification($u->name, $this->date, $this->quarter));
         }
