@@ -14,6 +14,6 @@ use \App\Jobs\SendDataEntryNotification;
 |
 */
 
-Artisan::command('test', function () {
+Artisan::command('data-entry:notification:send', function () {
     dispatch_now(new SendDataEntryNotification(date('Y-m-d'), '15:30'));
 });
