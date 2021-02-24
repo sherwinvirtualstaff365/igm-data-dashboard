@@ -36,11 +36,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => 'smtp.googlemail.com',
-            'port' => 465,
-            'encryption' => 'ssl',
-            'username' => 'thenullmailer@gmail.com',
-            'password' => 'D3nFr@5!n',
+            'host' => env('MAIL_HOST'),
+            'port' => env('MAIL_PORT'),
+            'encryption' => env('MAIL_ENCRYPTION'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'auth_mode' => null,
         ],
@@ -84,7 +84,7 @@ return [
     */
 
     'from' => [
-        'address' => 'thenullmailer@gmail.com',
+        'address' => env('MAIL_FROM_ADDRESS'),
         'name' => env('APP_NAME'),
     ],
 

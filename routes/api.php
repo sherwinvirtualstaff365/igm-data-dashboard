@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\DataEntry;
 use Illuminate\Http\Request;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,4 +18,36 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::prefix('v1')->group(function () {
+    /**
+     * returns json data of current years dataentry
+     */
+    Route::get('data-entry', function () {
+        $return = [];
+        $records = DataEntry::whereYear('entry_date', date('Y'))
+                            ->whereMonth('entry_date', date('m'))
+                            ->with('user')
+                            ->get();
+
+        foreach ($records as $de) {
+            $meta = json_decode($de->meta_data);
+            $return[] = [
+                'date' => $de->entry_date,
+                'staff' => $de->user->name,
+                'calls_dialed' => $meta->calls_dialed,
+                'conversations' => $meta->conversations,
+                'rating_questions_asked' => $meta->rating_questions_asked,
+                'dollars_taken' => $meta->dollars_taken,
+                'units_sold' => $meta->units_sold,
+                'google_uploads' => $meta->google_uploads,
+                'product_review_uploads' => $meta->product_review_uploads,
+            ];
+        }
+
+        return $return;
+
+    });
 });

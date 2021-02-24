@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Artisan;
-use \App\Jobs\SendDataEntryNotification;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\DataEntryNotification;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,8 @@ use \App\Jobs\SendDataEntryNotification;
 
 Artisan::command('data-entry:notification:send', function () {
     dispatch_now(new SendDataEntryNotification(date('Y-m-d'), '15:30'));
+});
+
+Artisan::command('notify-sherwin', function () {
+    Mail::to('sherwin@virtualstaff365.com.au')->queue(new DataEntryNotification('Sherwin de Jeus', date('Y-m-d'), '15:00'));
 });

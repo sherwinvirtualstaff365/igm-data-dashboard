@@ -10,4 +10,9 @@ class DataEntry extends Model
     use HasFactory;
 
     protected $table = 'data_entries';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

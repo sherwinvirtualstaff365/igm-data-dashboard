@@ -17,8 +17,6 @@
                         <iframe width="1024" height="768" src="https://datastudio.google.com/embed/reporting/42b8593c-91af-4dfb-ba43-400183196c09/page/CxK3B" frameborder="0" style="border:0" allowfullscreen></iframe>
                     @endif
 
-
-
                 </div>
             </div>
         </div>
