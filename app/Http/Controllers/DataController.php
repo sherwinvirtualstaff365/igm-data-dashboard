@@ -40,20 +40,17 @@ class DataController extends Controller
      */
     public function saveEntry(Request $request)
     {
-        $entryDate = Carbon::createFromFormat('Y-m-d H:m:s',  $request->date . ' ' . $request->quarter . ':00')->toDateTimeString();
+        $entryDate = $request->date . ' ' . $request->quarter . ':00';
 
         // check if entry already exist (user_id, entry_date, meta_data->quarter)
-        $entry = DataEntry::where('user_id', Auth()->user()->id)
+        DataEntry::where('user_id', Auth()->user()->id)
                             ->where('entry_date', $entryDate)
-                            ->first();
-        if (!$entry) {
-            $entry = new DataEntry();
-            $entry->entry_date = $request->date . ' ' . $request->quarter . ':00';
-            $entry->user_id = Auth()->user()->id;
-        }
+                            ->delete();
 
-        // update fields
-        $metaData = [
+        $entry = new DataEntry();
+        $entry->entry_date = $entryDate;
+        $entry->user_id = Auth()->user()->id;
+        $entry->meta_data = json_encode([
             'calls_dialed' => $request->calls_dialed,
             'conversations' => $request->conversations,
             'rating_questions_asked' => $request->rating_questions_asked,
@@ -61,8 +58,7 @@ class DataController extends Controller
             'units_sold' => $request->units_sold,
             'google_uploads' => $request->google_uploads,
             'product_review_uploads' => $request->product_review_uploads
-        ];
-        $entry->meta_data = json_encode($metaData);
+        ]);
 
         // save
         $entry->save();

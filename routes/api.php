@@ -25,7 +25,7 @@ Route::prefix('v1')->group(function () {
     /**
      * returns json data of current years dataentry
      */
-    Route::get('data-entry', function () {
+    Route::get('data-entry', function (Request $request) {
         \Log::debug(json_encode(request()->all()));
 
         $return = [];
