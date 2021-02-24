@@ -35,17 +35,17 @@ Route::prefix('v1')->group(function () {
         foreach ($records as $de) {
             $meta = json_decode($de->meta_data);
             $return[] = [
-                'date' => $de->entry_date,
-                'staff' => $de->user->name,
-                'calls_dialed' => $meta->calls_dialed,
-                'calls_dialed_target' => 100,
-                'conversations' => $meta->conversations,
-                'conversations_target' => 100,
-                'rating_questions_asked' => $meta->rating_questions_asked,
-                'dollars_taken' => $meta->dollars_taken,
-                'units_sold' => $meta->units_sold,
-                'google_uploads' => $meta->google_uploads,
-                'product_review_uploads' => $meta->product_review_uploads,
+                'Date' => $de->entry_date,
+                'Staff' => $de->user->name,
+                'Calls Dialed' => $meta->calls_dialed,
+                'Target Calls Dialed' => 100,
+                'Conversations' => $meta->conversations,
+                'Target Conversations' => 100,
+                'Rating Questions Asked' => $meta->rating_questions_asked,
+                'Dollars Taken' => $meta->dollars_taken,
+                'Units Sold' => $meta->units_sold,
+                'Google Uploads' => $meta->google_uploads,
+                'Product Review Uploads' => $meta->product_review_uploads,
             ];
         }
 
