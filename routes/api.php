@@ -26,7 +26,7 @@ Route::prefix('v1')->group(function () {
      * returns json data of current years dataentry
      */
     Route::get('data-entry', function (Request $request) {
-        \Log::debug(json_encode(request()->all()));
+        \Log::debug(__METHOD__);
 
         $return = [];
         $records = DataEntry::whereYear('entry_date', date('Y'))
@@ -50,6 +50,8 @@ Route::prefix('v1')->group(function () {
                 'Product Review Uploads' => $meta->product_review_uploads,
             ];
         }
+
+        \Log::debug(json_encode($return));
 
         return $return;
 
