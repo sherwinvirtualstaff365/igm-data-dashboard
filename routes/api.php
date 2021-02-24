@@ -26,7 +26,7 @@ Route::prefix('v1')->group(function () {
      * returns json data of current years dataentry
      */
     Route::get('data-entry', function () {
-        \Log::debug(request()->all());
+        \Log::debug(json_encode(request()->all()));
 
         $return = [];
         $records = DataEntry::whereYear('entry_date', date('Y'))
