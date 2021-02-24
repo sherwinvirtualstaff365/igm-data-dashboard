@@ -15,7 +15,7 @@
                         <iframe width="1024" height="768" src="https://datastudio.google.com/embed/reporting/aa32561c-24fb-4506-aea9-fe027178159d/page/rXX3B" frameborder="0" style="border:0" allowfullscreen></iframe>
                     @else
                         <iframe width="1024" height="768"
-                            src="https://datastudio.google.com/embed/reporting/fff6b4b3-24af-401d-8547-c986b181129b/page/rXX3B/?params={{ urlencode(json_encode(['ds0.staff'=>Auth()->user()->name])) }}"
+                            src="https://datastudio.google.com/embed/reporting/fff6b4b3-24af-401d-8547-c986b181129b/page/rXX3B?params={{ urlencode(json_encode(['ds0.staff'=>Auth()->user()->name])) }}"
                             frameborder="0" style="border:0" allowfullscreen></iframe>
                     @endif
 
