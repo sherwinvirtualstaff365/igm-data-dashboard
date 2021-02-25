@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\DataEntry;
+use App\Models\Financial;
 use App\Models\Lead;
 
 use Illuminate\Http\Request;
@@ -72,6 +73,31 @@ Route::prefix('v1')->group(function () {
                 'New Leads (Pay Per Click)' => $meta->new_leads_ppc,
                 'Ballpark' => $meta->ballpark,
                 'Scope' => $meta->scope,
+            ];
+        }
+
+        return $return;
+    });
+
+    /**
+     * returns json data of financial summary
+     */
+    Route::get('data-entry/financials', function (Request $request) {
+        $return = [];
+        $records = Financial::whereYear('entry_date', date('Y'))
+                ->whereMonth('entry_date', date('m'))
+                ->get();
+
+        foreach ($records as $de) {
+        $meta = json_decode($de->meta_data);
+        $return[] = [
+                'Date' => date('Y-m-d', strtotime($de->entry_date)),
+                'Funds transfer Analysis' => $meta->funds_transfer_analysis,
+                'New Schedules added' => $meta->new_schedules_added,
+                'Schedules moved down' => $meta->schedules_moved_down,
+                'Schedules moved up' => $meta->schedules_moved_up,
+                'Schedules cancelled' => $meta->schedules_cancelled,
+                'SnS Paids approved' => $meta->sns_paids_approved,
             ];
         }
 
