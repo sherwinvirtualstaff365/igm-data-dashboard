@@ -45,4 +45,14 @@ class User extends Authenticatable
     {
         return 'admin'==$this->type;
     }
+
+    public function isManager()
+    {
+        return 'manager'==$this->type;
+    }
+
+    public function isStaff()
+    {
+        return 'staff'==$this->type;
+    }
 }
