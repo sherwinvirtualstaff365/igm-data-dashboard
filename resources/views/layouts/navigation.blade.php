@@ -15,9 +15,22 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('data-entry-form')" :active="request()->routeIs('data-entry-form')">
+
+                    @if (Auth()->user()->isStaff())
+                    <x-nav-link :href="route('data-entry-staff')" :active="request()->routeIs('data-entry-staff')">
                         {{ __('Data Entry') }}
                     </x-nav-link>
+                    @endif
+
+                    @if (Auth()->user()->isManager())
+                    <x-nav-link :href="route('data-entry-leads')" :active="request()->routeIs('data-entry-leads')">
+                        {{ __('Data Entry - Leads') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('data-entry-financials')" :active="request()->routeIs('data-entry-financials')">
+                        {{ __('Data Entry - Financials') }}
+                    </x-nav-link>
+                    @endif
+
                     @if (Auth()->user()->isAdmin())
                     <x-nav-link :href="route('user-list')" :active="request()->routeIs('user-list')">
                         {{ __('Users') }}
@@ -79,7 +92,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('data-entry-form')" :active="request()->routeIs('data-entry-form')">
+            <x-responsive-nav-link :href="route('data-entry-staff')" :active="request()->routeIs('data-entry-staff')">
                 {{ __('Data Entry') }}
             </x-responsive-nav-link>
             @if (Auth()->user()->isAdmin())
