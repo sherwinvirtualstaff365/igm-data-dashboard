@@ -1,8 +1,9 @@
 <?php
 
 use App\Models\DataEntry;
+use App\Models\Lead;
+
 use Illuminate\Http\Request;
-use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +26,7 @@ Route::prefix('v1')->group(function () {
     /**
      * returns json data of current years dataentry
      */
-    Route::get('data-entry', function (Request $request) {
+    Route::get('data-entry/staff', function (Request $request) {
         $return = [];
         $records = DataEntry::whereYear('entry_date', date('Y'))
                             ->whereMonth('entry_date', date('m'))
@@ -50,6 +51,29 @@ Route::prefix('v1')->group(function () {
         }
 
         return $return;
+    });
 
+    /**
+     * returns json data of leads summary
+     */
+    Route::get('data-entry/leads', function (Request $request) {
+        $return = [];
+        $records = Lead::whereYear('entry_date', date('Y'))
+                ->whereMonth('entry_date', date('m'))
+                ->get();
+
+        foreach ($records as $de) {
+        $meta = json_decode($de->meta_data);
+        $return[] = [
+                'New Leads (1300 Number)' => $meta->new_leads_1300,
+                'New Leads (Website)' => $meta->new_leads_website,
+                'New Leads (Referral)' => $meta->new_leads_referral,
+                'New Leads (Pay Per Click)' => $meta->new_leads_ppc,
+                'Ballpark' => $meta->ballpark,
+                'Scope' => $meta->scope,
+            ];
+        }
+
+        return $return;
     });
 });
