@@ -53,7 +53,7 @@ class LeadController extends Controller
             'new_leads_1300' => $request->new_leads_1300,
             'new_leads_website' => $request->new_leads_website,
             'new_leads_referral' => $request->new_leads_referral,
-            'new_lead_ppc' => $request->new_lead_ppc,
+            'new_leads_ppc' => $request->new_leads_ppc,
             'ballpark' => $request->ballpark,
             'scope' => $request->scope,
         ]);
