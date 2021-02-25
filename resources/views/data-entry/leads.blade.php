@@ -35,7 +35,7 @@
                         <x-input id="new_leads_referral" class="block mt-1 text-center" type="number" name="new_leads_referral" value=""/>
                     </div>
                     <div class="">
-                        <x-label for="new_leads_ppc" :value="__('New Leads (PPC)')" />
+                        <x-label for="new_leads_ppc" :value="__('New Leads (Pay Pay Click)')" />
                         <x-input id="new_leads_ppc" class="block mt-1 text-center" type="number" name="new_leads_ppc" value=""/>
                     </div>
                     <div class="mt-2">
