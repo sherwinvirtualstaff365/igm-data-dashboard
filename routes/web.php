@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\FinancialsController;
+use App\Http\Controllers\LeadsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +31,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user-profile', [UserController::class, 'profile'])->name('user-profile');
     Route::post('/user-profile', [UserController::class, 'profileUpdate']);
 
-    Route::get('/data-entry', [DataController::class, 'show'])->name('data-entry-form');
-    Route::get('/data-entry/{date}/{quarter}', [DataController::class, 'getEntry']);
-    Route::post('/data-entry/{date}/{quarter}', [DataController::class, 'saveEntry']);
+    Route::get('/data-entry/staff', [DataController::class, 'show'])->name('data-entry-staff');
+    Route::get('/data-entry/staff/{date}/{quarter}', [DataController::class, 'getEntry']);
+    Route::post('/data-entry/staff/{date}/{quarter}', [DataController::class, 'saveEntry']);
 
-    Route::get('/data-summary', [DataController::class, 'summary']);
+    Route::get('/data-entry/leads', [LeadsController::class, 'show'])->name('data-entry-leads');
+    Route::get('/data-entry/leads/{date}', [LeadsController::class, 'getEntry']);
+    Route::post('/data-entry/leads/{date}', [LeadsController::class, 'saveEntry']);
+
+    Route::get('/data-entry/financials', [FinancialsController::class, 'show'])->name('data-entry-financials');
+    Route::get('/data-entry/financials/{date}', [FinancialsController::class, 'getEntry']);
+    Route::post('/data-entry/financials/{date}', [FinancialsController::class, 'saveEntry']);
 
     Route::middleware(['admin'])->group(function(){
         Route::get('/user-list', [UserController::class, 'list'])->name('user-list');
