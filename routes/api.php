@@ -65,6 +65,7 @@ Route::prefix('v1')->group(function () {
         foreach ($records as $de) {
         $meta = json_decode($de->meta_data);
         $return[] = [
+                'Date' => date('Y-m-d', strtotime($de->entry_date)),
                 'New Leads (1300 Number)' => $meta->new_leads_1300,
                 'New Leads (Website)' => $meta->new_leads_website,
                 'New Leads (Referral)' => $meta->new_leads_referral,
