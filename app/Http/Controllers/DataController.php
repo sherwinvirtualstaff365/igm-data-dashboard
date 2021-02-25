@@ -16,7 +16,7 @@ class DataController extends Controller
      */
     public function show(Request $request)
     {
-        return view('data-entry.show', ['date'=>$request->date ?? date('Y-m-d'), 'quarter'=>$request->quarter ?? '']);
+        return view('data-entry.staff', ['date'=>$request->date ?? date('Y-m-d'), 'quarter'=>$request->quarter ?? '']);
     }
 
     /**

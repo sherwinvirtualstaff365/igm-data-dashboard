@@ -89,7 +89,7 @@
         });
 
         function loadData(params) {
-            axios.get('/data-entry/' + $('input[name=date]').val() + '/' + $('select[name=quarter]').val())
+            axios.get('/data-entry/staff/' + $('input[name=date]').val() + '/' + $('select[name=quarter]').val())
                 .then(function(res){
                     console.log(res.data);
                     // reset
@@ -127,7 +127,7 @@
                 google_uploads: $('input[name=google_uploads]').val(),
                 product_review_uploads: $('input[name=product_review_uploads]').val(),
             }
-            axios.post('/data-entry/' + $('input[name=date]').val() + '/' + $('select[name=quarter]').val(), data, {headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},})
+            axios.post('/data-entry/staff/' + $('input[name=date]').val() + '/' + $('select[name=quarter]').val(), data, {headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},})
                 .then(function(res){
                     alert('Entry has been saved');
                 })
