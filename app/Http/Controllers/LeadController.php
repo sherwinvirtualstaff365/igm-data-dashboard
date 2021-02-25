@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Leads;
+use App\Models\Lead;
 
-class LeadsController extends Controller
+class LeadController extends Controller
 {
     /**
      * show the data entry form
@@ -25,7 +25,7 @@ class LeadsController extends Controller
      */
     public function getEntry(Request $request)
     {
-        $data = Leads::where('user_id', Auth()->user()->id)
+        $data = Lead::where('user_id', Auth()->user()->id)
                             ->where('entry_date', $request->date)
                             ->first();
         return response()->json($data);
@@ -42,11 +42,11 @@ class LeadsController extends Controller
         $entryDate = $request->date;
 
         // check if entry already exist (user_id, entry_date, meta_data->quarter)
-        Leads::where('user_id', Auth()->user()->id)
+        Lead::where('user_id', Auth()->user()->id)
                             ->where('entry_date', $entryDate)
                             ->delete();
 
-        $entry = new Leads();
+        $entry = new Lead();
         $entry->entry_date = $entryDate;
         $entry->user_id = Auth()->user()->id;
         $entry->meta_data = json_encode([

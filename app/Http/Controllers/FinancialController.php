@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Financials;
+use App\Models\Financial;
 
-class FinancialsController extends Controller
+class FinancialController extends Controller
 {
     /**
      * show the data entry form
@@ -25,7 +25,7 @@ class FinancialsController extends Controller
      */
     public function getEntry(Request $request)
     {
-        $data = Financials::where('user_id', Auth()->user()->id)
+        $data = Financial::where('user_id', Auth()->user()->id)
                             ->where('entry_date', $request->date)
                             ->first();
         return response()->json($data);
@@ -42,11 +42,11 @@ class FinancialsController extends Controller
         $entryDate = $request->date;
 
         // check if entry already exist (user_id, entry_date, meta_data->quarter)
-        Financials::where('user_id', Auth()->user()->id)
+        Financial::where('user_id', Auth()->user()->id)
                             ->where('entry_date', $entryDate)
                             ->delete();
 
-        $entry = new Financials();
+        $entry = new Financial();
         $entry->entry_date = $entryDate;
         $entry->user_id = Auth()->user()->id;
         $entry->meta_data = json_encode([
