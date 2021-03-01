@@ -26,7 +26,7 @@ class DataEntryNotification extends Mailable
         $this->date = $date;
         $this->name = $name;
         $this->quarter = $quarter;
-        $this->link = env('APP_URL') . '/data-entry/?date=' . $date . '&quarter=' . $quarter;
+        $this->link = env('APP_URL') . '/index.php/data-entry/staff/?date=' . $date . '&quarter=' . $quarter;
     }
 
     /**
