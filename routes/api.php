@@ -30,7 +30,7 @@ Route::prefix('v1')->group(function () {
     Route::get('data-entry/staff', function (Request $request) {
         $return = [];
         $records = DataEntry::whereYear('entry_date', date('Y'))
-                            ->whereMonth('entry_date', date('m'))
+                            // ->whereMonth('entry_date', date('m'))
                             ->with('user')
                             ->get();
 
