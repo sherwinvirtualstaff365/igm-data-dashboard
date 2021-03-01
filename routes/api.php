@@ -60,7 +60,7 @@ Route::prefix('v1')->group(function () {
     Route::get('data-entry/leads', function (Request $request) {
         $return = [];
         $records = Lead::whereYear('entry_date', date('Y'))
-                ->whereMonth('entry_date', date('m'))
+                // ->whereMonth('entry_date', date('m'))
                 ->get();
 
         foreach ($records as $de) {
@@ -85,7 +85,7 @@ Route::prefix('v1')->group(function () {
     Route::get('data-entry/financials', function (Request $request) {
         $return = [];
         $records = Financial::whereYear('entry_date', date('Y'))
-                ->whereMonth('entry_date', date('m'))
+                // ->whereMonth('entry_date', date('m'))
                 ->get();
 
         foreach ($records as $de) {
