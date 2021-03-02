@@ -22,6 +22,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/ping', function() {
+    Artisan::call('schedule:run');
+});
+
+Route::get('/infusionsoft/callback', 'InfusionsoftController@callback');
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', function () {
