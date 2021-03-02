@@ -24,6 +24,7 @@ Route::get('/', function () {
 
 Route::get('/ping', function() {
     Artisan::call('schedule:run');
+    echo date('Y-m-d H:i:s');
 });
 
 Route::get('/infusionsoft/callback', 'InfusionsoftController@callback');
