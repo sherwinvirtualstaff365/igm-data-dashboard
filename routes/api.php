@@ -63,7 +63,7 @@ Route::prefix('v1')->group(function () {
         foreach ($records as $de) {
             $meta = json_decode($de->meta_data);
             $return[] = [
-                'Date' => $de->entry_date,
+                'Date' => $de->entry_date.' 00:00:00',
                 'Staff' => User::find($meta->staff)->name,
                 'Calls Dialed' => $meta->calls_dialed,
                 'Conversations' => $meta->conversations,
