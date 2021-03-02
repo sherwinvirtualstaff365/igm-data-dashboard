@@ -25,12 +25,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        \Log::debug('schedule run');
         foreach (['11:00','13:00','15:30','17:30'] as $qtr) {
             $schedule->job(new SendDataEntryNotification(date('Y-m-d'), $qtr))
-                 ->dailyAt($qtr)
-                 ->timezone('Australia/Melbourne');
+            ->dailyAt($qtr)
+            ->timezone('Australia/Melbourne');
         }
-
     }
 
     /**
