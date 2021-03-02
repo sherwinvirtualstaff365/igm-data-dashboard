@@ -16,7 +16,7 @@ class InfusionController extends Controller
      */
     public function show(Request $request)
     {
-        return view('data-entry.infusion', ['date'=>$request->date ?? date('Y-m-d'), 'quarter'=>$request->quarter ?? '']);
+        return view('data-entry.infusion', ['date'=>$request->date ?? date('Y-m-d')]);
     }
 
     /**
@@ -43,7 +43,7 @@ class InfusionController extends Controller
     {
         $entryDate = $request->date;
 
-        // check if entry already exist (user_id, entry_date, meta_data->quarter)
+        // check if entry already exist (user_id, entry_date, meta_data->staff)
         Infusion::where('user_id', Auth()->user()->id)
                             ->where('entry_date', $entryDate)
                             ->where('meta_data->staff',$request->staff)
