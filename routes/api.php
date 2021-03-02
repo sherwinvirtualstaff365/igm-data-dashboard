@@ -3,6 +3,8 @@
 use App\Models\DataEntry;
 use App\Models\Financial;
 use App\Models\Lead;
+use App\Models\Infusion;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,11 +19,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 
 Route::prefix('v1')->group(function () {
     /**
@@ -53,6 +50,26 @@ Route::prefix('v1')->group(function () {
 
         return $return;
     });
+
+
+    Route::get('data-entry/infusion', function (Request $request) {
+        $return = [];
+        $records = Infusion::whereYear('entry_date', date('Y'))
+                            // ->whereMonth('entry_date', date('m'))
+                            ->get();
+
+        foreach ($records as $de) {
+            $meta = json_decode($de->meta_data);
+            $return[] = [
+                'Date' => $de->entry_date,
+                'Staff' => User::find($meta->staff)->name,
+                'Calls Dialed' => $meta->calls_dialed,
+            ];
+        }
+
+        return $return;
+    });
+
 
     /**
      * returns json data of leads summary

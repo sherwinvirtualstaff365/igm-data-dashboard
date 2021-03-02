@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\InfusionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/data-entry/leads', [LeadController::class, 'show'])->name('data-entry-leads');
     Route::get('/data-entry/leads/{date}', [LeadController::class, 'getEntry']);
     Route::post('/data-entry/leads/{date}', [LeadController::class, 'saveEntry']);
+
+    Route::get('/data-entry/infusion', [InfusionController::class, 'show'])->name('data-entry-infusion');
+    Route::get('/data-entry/infusion/{date}/{staff}', [InfusionController::class, 'getEntry']);
+    Route::post('/data-entry/infusion/{date}/{staff}', [InfusionController::class, 'saveEntry']);
 
     Route::get('/data-entry/financials', [FinancialController::class, 'show'])->name('data-entry-financials');
     Route::get('/data-entry/financials/{date}', [FinancialController::class, 'getEntry']);
