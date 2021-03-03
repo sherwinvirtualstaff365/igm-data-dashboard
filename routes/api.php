@@ -57,7 +57,7 @@ Route::prefix('v1')->group(function () {
         $return = [];
         $records = Infusion::whereYear('entry_date', date('Y'))
                             ->whereMonth('entry_date', date('m'))
-                            // ->orderBy('entry_date')
+                            ->orderBy('entry_date')
                             ->get();
 
         foreach ($records as $de) {
@@ -81,7 +81,7 @@ Route::prefix('v1')->group(function () {
         $return = [];
         $records = Lead::whereYear('entry_date', date('Y'))
                 ->whereMonth('entry_date', date('m'))
-                // ->orderBy('entry_date')
+                ->orderBy('entry_date')
                 ->get();
 
         foreach ($records as $de) {
@@ -107,7 +107,7 @@ Route::prefix('v1')->group(function () {
         $return = [];
         $records = Financial::whereYear('entry_date', date('Y'))
                 ->whereMonth('entry_date', date('m'))
-                // ->orderBy('entry_date')
+                ->orderBy('entry_date')
                 ->get();
 
         foreach ($records as $de) {
