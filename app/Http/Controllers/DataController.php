@@ -54,10 +54,11 @@ class DataController extends Controller
             'calls_dialed' => $request->calls_dialed,
             'conversations' => $request->conversations,
             'rating_questions_asked' => $request->rating_questions_asked,
+            'podium_request_sent' => $request->podium_request_sent,
             'dollars_taken' => $request->dollars_taken,
             'units_sold' => $request->units_sold,
             'google_uploads' => $request->google_uploads,
-            'product_review_uploads' => $request->product_review_uploads
+            'product_review_uploads' => $request->product_review_uploads,
         ]);
 
         // save

@@ -37,15 +37,16 @@ Route::prefix('v1')->group(function () {
             $return[] = [
                 'Date' => $de->entry_date,
                 'Staff' => $de->user->name,
-                'Calls Dialed' => $meta->calls_dialed,
+                'Calls Dialed' => $meta->calls_dialed ?? 0,
                 'Target Calls Dialed' => 100,
-                'Conversations' => $meta->conversations,
+                'Conversations' => $meta->conversations ?? 0,
                 'Target Conversations' => 100,
-                'Rating Questions Asked' => $meta->rating_questions_asked,
-                'Dollars Taken' => $meta->dollars_taken,
-                'Units Sold' => $meta->units_sold,
-                'Google Uploads' => $meta->google_uploads,
-                'Product Review Uploads' => $meta->product_review_uploads,
+                'Rating Questions Asked' => $meta->rating_questions_asked ?? 0,
+                'Podium Request Sent' => $meta->podium_request_sent ?? 0,
+                'Dollars Taken' => $meta->dollars_taken ?? 0,
+                'Units Sold' => $meta->units_sold ?? 0,
+                'Google Uploads' => $meta->google_uploads ?? 0,
+                'Product Review Uploads' => $meta->product_review_uploads ?? 0,
             ];
         }
 

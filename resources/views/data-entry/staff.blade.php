@@ -49,6 +49,10 @@
                         <x-input id="rating_questions_asked" class="block mt-1 text-center" type="number" name="rating_questions_asked" value=""/>
                     </div>
                     <div class="mt-2">
+                        <x-label for="podium_request_sent" :value="__('Podium Request Sent')" />
+                        <x-input id="podium_request_sent" class="block mt-1 text-center" type="number" name="podium_request_sent" value=""/>
+                    </div>
+                    <div class="mt-2">
                         <x-label for="dollars_taken" :value="__('Dollars Taken')" />
                         <x-input id="dollars_taken" class="block mt-1 text-center" type="number" name="dollars_taken" value=""/>
                     </div>
@@ -96,6 +100,7 @@
                     $('input[name=calls_dialed]').val(0);
                     $('input[name=conversations]').val(0);
                     $('input[name=rating_questions_asked]').val(0);
+                    $('input[name=podium_request_sent]').val(0);
                     $('input[name=dollars_taken]').val(0);
                     $('input[name=units_sold]').val(0);
                     $('input[name=google_uploads]').val(0);
@@ -106,6 +111,7 @@
                         $('input[name=calls_dialed]').val(metaData.calls_dialed!=undefined ? metaData.calls_dialed : 0);
                         $('input[name=conversations]').val(metaData.conversations!=undefined ? metaData.conversations : 0);
                         $('input[name=rating_questions_asked]').val(metaData.rating_questions_asked!=undefined ? metaData.rating_questions_asked : 0);
+                        $('input[name=podium_request_sent]').val(metaData.podium_request_sent!=undefined ? metaData.podium_request_sent : 0);
                         $('input[name=dollars_taken]').val(metaData.dollars_taken!=undefined ? metaData.dollars_taken : 0);
                         $('input[name=units_sold]').val(metaData.units_sold!=undefined ? metaData.units_sold : 0);
                         $('input[name=google_uploads]').val(metaData.google_uploads!=undefined ? metaData.google_uploads : 0);
@@ -122,6 +128,7 @@
                 calls_dialed: $('input[name=calls_dialed]').val(),
                 conversations: $('input[name=conversations]').val(),
                 rating_questions_asked: $('input[name=rating_questions_asked]').val(),
+                podium_request_sent: $('input[name=podium_request_sent]').val(),
                 dollars_taken: $('input[name=dollars_taken]').val(),
                 units_sold: $('input[name=units_sold]').val(),
                 google_uploads: $('input[name=google_uploads]').val(),
