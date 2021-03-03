@@ -65,8 +65,8 @@ Route::prefix('v1')->group(function () {
             $return[] = [
                 'Date' => $de->entry_date.' 00:00:00',
                 'Staff' => User::find($meta->staff)->name,
-                'Calls Dialed' => $meta->calls_dialed,
-                'Conversations' => $meta->conversations,
+                'Automated Dials' => $meta->calls_dialed,
+                'Automated Conversations' => $meta->conversations,
             ];
         }
 
