@@ -42,7 +42,7 @@ Route::prefix('v1')->group(function () {
                 'Conversations' => $meta->conversations ?? 0,
                 'Target Conversations' => 100,
                 'Rating Questions Asked' => $meta->rating_questions_asked ?? 0,
-                'Podium Request Sent' => $meta->podium_request_sent ?? 0,
+                'Podium Requests Sent' => $meta->podium_request_sent ?? 0,
                 'Dollars Taken' => $meta->dollars_taken ?? 0,
                 'Units Sold' => $meta->units_sold ?? 0,
                 'Google Uploads' => $meta->google_uploads ?? 0,
