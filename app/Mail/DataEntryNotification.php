@@ -36,6 +36,6 @@ class DataEntryNotification extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.data-entry-notification');
+        return $this->view('mail.data-entry-notification')->subject('Data Entry Notification: ' . $this->date . ' ' . $this->quarter);
     }
 }
