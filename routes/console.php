@@ -83,8 +83,8 @@ Artisan::command('test-xml', function(){
     // $return = $infusionsoft->search()->getAllReportColumns($savedSearchID, $userID);
     // $return = $infusionsoft->search()->getSavedSearchResultsAllFields($savedSearchID, $userID, 1);
     // $return = $infusionsoft->search()->getSavedSearchResultsAllFields($savedSearchID, $userID, 1);
-    // $return = $infusionsoft->tasks()->create(['title' => 'My First Task', 'description' => 'Better get it done!']);
-    $return = $infusionsoft->tasks()->all();
+    $return = $infusionsoft->tasks()->create(['title' => 'Task for '.date('Y-m-d H:i:s'), 'description' => 'Better get it done!']);
+    // $return = $infusionsoft->tasks()->all();
 
     dump($return);
 
