@@ -27,7 +27,7 @@ Route::prefix('v1')->group(function () {
      */
     Route::get('data-entry/staff', function (Request $request) {
 
-        return Cache::remember('data-entry/staff', 10, function () {
+        return Cache::remember('data-entry/staff', 60, function () {
             $records =  DataEntry::whereYear('entry_date', date('Y'))
                     ->whereMonth('entry_date', date('m'))
                     ->with('user')
@@ -57,7 +57,7 @@ Route::prefix('v1')->group(function () {
 
 
     Route::get('data-entry/infusion', function (Request $request) {
-        return Cache::remember('infusion', 10, function () {
+        return Cache::remember('infusion', 60, function () {
             $return = [];
             $records = Infusion::whereYear('entry_date', date('Y'))
                                 ->whereMonth('entry_date', date('m'))
@@ -84,7 +84,7 @@ Route::prefix('v1')->group(function () {
     Route::get('data-entry/leads', function (Request $request) {
 
 
-        return Cache::remember('leads', 10, function () {
+        return Cache::remember('leads', 60, function () {
 
             $return = [];
             $records = Lead::whereYear('entry_date', date('Y'))
@@ -116,7 +116,7 @@ Route::prefix('v1')->group(function () {
     Route::get('data-entry/financials', function (Request $request) {
 
 
-        return Cache::remember('financials', 10, function () {
+        return Cache::remember('financials', 60, function () {
 
             $return = [];
             $records = Financial::whereYear('entry_date', date('Y'))
